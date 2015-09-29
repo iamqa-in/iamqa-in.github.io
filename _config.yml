@@ -7,7 +7,7 @@ title: I am QA - Gayathri Mohan
 subtitle:
 description:
 author: Gayathri Mohan
-language: English
+language: en
 timezone: Asia/Kolkata
 
 # URL
@@ -34,7 +34,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -66,7 +66,13 @@ plugins:
   - hexo-generator-cname
 
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: tranquilpeak
+
+#Feed
+feed:
+    type: atom
+    path: atom.xml
+    limit: 20
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
