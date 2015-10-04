@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://iamqa.in/"/>
-  <updated>2015-10-04T17:33:56.000Z</updated>
+  <updated>2015-10-04T18:43:46.000Z</updated>
   <id>http://iamqa.in/</id>
   
   <author>
@@ -19,9 +19,10 @@
     <link href="http://iamqa.in/2015/10/04/The-IoT-Testing-Atlas/"/>
     <id>http://iamqa.in/2015/10/04/The-IoT-Testing-Atlas/</id>
     <published>2015-10-04T17:09:58.000Z</published>
-    <updated>2015-10-04T17:33:56.000Z</updated>
+    <updated>2015-10-04T18:43:46.000Z</updated>
     <content type="html"><![CDATA[<p>I recently worked on a product, where a mobile app talks to a connected machine. The various parameters and states that these two devices can be in made it particularly challenging while coming up with test scenarios.</p>
 <p>I would like to present a framework which I found useful for managing the permutations of parameters while testing an IoT (Internet of Things) based product. I call it, <em>The IoT Testing Atlas</em>.</p>
+<a id="more"></a>
 <h1 id="IoT_Testing_Parameters">IoT Testing Parameters</h1><p>Let us consider some of the common set of states/variants that a tester would be testing in a simple web application:</p>
 <ul>
 <li>Server Down</li>
@@ -85,7 +86,9 @@
 <p>This framework can be extended to many more systems in a product. Moreover, when there are more than one QA on a team, this framework provides a common understanding and approach for testing the product.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>I recently worked on a product, where a mobile app talks to a connected machine. The various parameters and states that these two devices]]>
+    <![CDATA[<p>I recently worked on a product, where a mobile app talks to a connected machine. The various parameters and states that these two devices can be in made it particularly challenging while coming up with test scenarios.</p>
+<p>I would like to present a framework which I found useful for managing the permutations of parameters while testing an IoT (Internet of Things) based product. I call it, <em>The IoT Testing Atlas</em>.</p>]]>
+    
     </summary>
     
       <category term="Atlas" scheme="http://iamqa.in/tags/Atlas/"/>
