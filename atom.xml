@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://iamqa.in/"/>
-  <updated>2015-09-28T18:48:20.000Z</updated>
+  <updated>2015-10-04T17:33:56.000Z</updated>
   <id>http://iamqa.in/</id>
   
   <author>
@@ -15,24 +15,88 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://iamqa.in/2015/09/29/hello-world/"/>
-    <id>http://iamqa.in/2015/09/29/hello-world/</id>
-    <published>2015-09-28T18:48:20.000Z</published>
-    <updated>2015-09-28T18:48:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <title><![CDATA[The IoT Testing Atlas]]></title>
+    <link href="http://iamqa.in/2015/10/04/The-IoT-Testing-Atlas/"/>
+    <id>http://iamqa.in/2015/10/04/The-IoT-Testing-Atlas/</id>
+    <published>2015-10-04T17:09:58.000Z</published>
+    <updated>2015-10-04T17:33:56.000Z</updated>
+    <content type="html"><![CDATA[<p>I recently worked on a product, where a mobile app talks to a connected machine. The various parameters and states that these two devices can be in made it particularly challenging while coming up with test scenarios.</p>
+<p>I would like to present a framework which I found useful for managing the permutations of parameters while testing an IoT (Internet of Things) based product. I call it, <em>The IoT Testing Atlas</em>.</p>
+<h1 id="IoT_Testing_Parameters">IoT Testing Parameters</h1><p>Let us consider some of the common set of states/variants that a tester would be testing in a simple web application:</p>
+<ul>
+<li>Server Down</li>
+<li>Http Timeouts</li>
+<li>Slow Networks</li>
+<li>Authorization &amp; Authentication Errors</li>
+<li>…</li>
+</ul>
+<p>So any application on the internet, needs to be tested for these 4+ states.</p>
+<p>Now, consider a mobile application. The mobile device brings its own additional set of states/variants into picture, like the following:</p>
+<ul>
+<li>Offline mode</li>
+<li>Online mode</li>
+<li>Activity Kill</li>
+<li>Background behavior</li>
+<li>Languages</li>
+<li>Location</li>
+<li>…</li>
+</ul>
+<p>Let us consider some of the simple parameters that a “connected machine” would bring in.</p>
+<ul>
+<li>Machine Wifi Off</li>
+<li>Machine Wifi on</li>
+<li>Machine is Busy</li>
+<li>Machine is Sleeping</li>
+<li>…</li>
+</ul>
+<p>This means that, even with the given set of example parameters, there are about <code>4*6*4</code> states the entire system can be at any point in time! Each of these states cannot be treated as a stand-alone entity, as the state transition within a system brings some more additional constraints. For example, state change from <em>offline</em> to <em>online</em> probably needs to trigger a set of events.</p>
+<p>The above set of parameters are only the tip of the proverbial iceberg. As we get deeper into the specifics, we may get overwhelmed while trying to connect these different states into logical scenarios. Thus, arose the need for the IoT Testing Atlas.</p>
+<h1 id="The_IoT_Testing_Atlas">The IoT Testing Atlas</h1><p>Most of us would have played with an Atlas to keep up with our Geography classes :).  Atlas as a concept, in this context, mainly helps to view all of the <code>n*n*n</code> parameters at a glance, and hence derive more meaningful scenarios for testing a particular feature.</p>
+<p>Each system in the product is captured as a circle with its n states, and the logical next states are placed close to each other. These circles are to be considered as rotatable entities. As you can see, I have a separate circle for the <strong>NFRs</strong> too, as these may slip out of our minds easily while testing such complex integrations.</p>
+<p>The following image shows my idea of the IoT Testing Atlas</p>
+<img src="/2015/10/04/The-IoT-Testing-Atlas/iot_testing_atlas.png" alt="[IoT Testing Atlas]" title="[IoT Testing Atlas]">
+<p>Let us use the Atlas and derive logical scenarios for some features which involve only mobile and machine interaction. This means our focus circles are the <em>Device</em>, <em>Machine</em> and <em>Network</em> circles.</p>
+<ol>
+<li>Fix the mobile device and machine at <em>Wifi On</em> state. On rotating the Network circle, we get the following scenarios:<ul>
+<li><em>Unauthorized</em> user tries to access the machine. Hence show “Access Denied” error message on app.</li>
+<li><em>Server down and server errors</em> should show appropriate business error messages say “Something went wrong. Try again later.”</li>
+<li><em>Response Timeout</em> could either re-trigger the same request with the app showing prolonged loading icons or show similar error message as above.</li>
+<li><em>Invalid request</em> should trigger messages like “Your app needs to be updated”.</li>
+</ul>
+</li>
+<li>Continue to keep the mobile device on <em>Wifi On</em>, and move the machine circle one by one.<ul>
+<li>When machine is in <em>offline</em> mode, app needs to indicate the user to “Check the machine for network connections”</li>
+<li>When machine is <em>Busy</em>, the required message “Unable to complete your request as the machine is busy” needs to popup.</li>
+<li>When machine is <em>sleeping</em> or in <em>some other network</em>, then “Machine not found” or similar messages should be shown.</li>
+<li>Now, switching the machine to the right network should enable the connection between mobile and machine again.</li>
+</ul>
+</li>
+<li>Now, fix the machine circle to <em>Wifi On</em> and rotate the mobile circle to find more scenarios<ul>
+<li>Mobile goes <em>offline</em>, then appropriate messages/behavior (like disabling the button etc) should come up.</li>
+<li>Mobile comes <em>online</em>, appropriate calls should go from the app to make connection with the machine</li>
+<li>Mobile <em>switches network</em> Wifi – 3G. What should happen?</li>
+<li>User gets a call and puts app in <em>background</em> while performing a task. Should they still see the completed request, or back to square one?</li>
+<li>Android <em>kills</em> the app which is in background for a while. Do we save the user’s last screen status?</li>
+<li>Apps with <em>Localization</em> scope needs verification at every scenario level.</li>
+</ul>
+</li>
+</ol>
+<p>This can be extended to many more scenarios as we perform multiple <em>rotations</em> of these circles. Some may not fit the current feature, and some may not even be relevant to the business needs. At the end of the day, we know we have not missed any state as we finish the circles!</p>
+<p>This framework can be extended to many more systems in a product. Moreover, when there are more than one QA on a team, this framework provides a common understanding and approach for testing the product.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    <![CDATA[<p>I recently worked on a product, where a mobile app talks to a connected machine. The various parameters and states that these two devices]]>
     </summary>
+    
+      <category term="Atlas" scheme="http://iamqa.in/tags/Atlas/"/>
+    
+      <category term="Frameworks" scheme="http://iamqa.in/tags/Frameworks/"/>
+    
+      <category term="IoT" scheme="http://iamqa.in/tags/IoT/"/>
+    
+      <category term="Testing" scheme="http://iamqa.in/tags/Testing/"/>
+    
+      <category term="IoT" scheme="http://iamqa.in/categories/IoT/"/>
     
   </entry>
   
